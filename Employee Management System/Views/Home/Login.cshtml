@@ -1,0 +1,43 @@
+﻿@model Employee_Management_System.Models.EmployeeInfoModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Login", "Home", null, FormMethod.Post, new { enctype = "multipart/form-data", @id = "login" }))
+{
+    @Html.AntiForgeryToken()
+        <div class="form-horizontal" style="width:50%; margin-left:25%; margin-top:150px;  ">
+            <div class="text-capitalize text-center" style="align-content: center; font-size: xx-large; margin-bottom: 20px">
+                Welcome to Employee Management System
+            </div>
+            <table class="table">
+                <tr>
+                    <td style="border-top:none; float:right">
+                        @Html.Label("Username", new { @class = "control-label col-md-2", @style = "font-size: initial"})
+                    </td>
+                    <td style="border-top:none">
+                        @Html.EditorFor(m => m.Email, new { htmlattributes = new { @class = "form-control", @placeholder = "Username", @required = "required" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-top:none; float:right">
+                        @Html.Label("Password", new { @class = "control-label col-md-2", @style = "font-size: initial" })
+                    </td>
+                    <td style="border-top:none">
+                        @Html.EditorFor(m => m.Password, new { htmlattributes = new { @class = "form-control", @placeholder = "Password", @type = "password", @required = "required" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+            <div class="form-group">
+                <div class="col-md-offset-5 col-md-10">
+                    <input type="submit" value="Log In" class="btn btn-primary col-lg-3" />
+                </div>
+            </div>
+        </div>
+}
